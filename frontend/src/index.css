@@ -1,0 +1,465 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --page: #f4f7f6;
+  --surface: #fff;
+  --surface-muted: #f1f5f4;
+  --ink: #192a33;
+  --ink-muted: #52636b;
+  --ink-soft: #718088;
+  --line: #dce5e3;
+  --brand: #286b67;
+  --brand-strong: #1c5754;
+  --brand-soft: #e8f2f0;
+  --scrollbar-width: 7px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--page);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "Avenir Next", Avenir, "Segoe UI", system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgb(40 107 103 / 42%);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: #c7e0dc;
+  color: var(--ink);
+}
+
+::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b9c9c6;
+  border: 2px solid var(--page);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #91a7a2;
+}
+
+@layer components {
+  .card-slate,
+  .glass-card {
+    @apply border border-slate-200 bg-white;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgb(32 63 60 / 4%);
+  }
+
+  .card-hover {
+    @apply card-slate transition duration-200;
+  }
+
+  .card-hover:hover {
+    border-color: #c1d4d0;
+    box-shadow: 0 10px 26px rgb(32 63 60 / 8%);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline,
+  .btn-ghost,
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 font-semibold transition duration-150 disabled:cursor-not-allowed disabled:opacity-55;
+    min-height: 42px;
+    border-radius: 8px;
+  }
+
+  .btn-primary {
+    @apply bg-brand-700 px-5 py-2.5 text-sm text-white;
+    box-shadow: 0 3px 9px rgb(40 107 103 / 12%);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    @apply bg-brand-800;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    @apply border border-slate-300 bg-white px-5 py-2.5 text-sm text-slate-700;
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    @apply border-slate-400 bg-slate-50 text-slate-900;
+  }
+
+  .btn-outline {
+    @apply border border-brand-700 bg-transparent px-5 py-2.5 text-sm text-brand-800;
+  }
+
+  .btn-outline:hover:not(:disabled) {
+    @apply bg-brand-50;
+  }
+
+  .btn-ghost {
+    @apply px-3 py-2 text-sm text-slate-600;
+  }
+
+  .btn-ghost:hover:not(:disabled) {
+    @apply bg-slate-100 text-slate-900;
+  }
+
+  .btn-danger {
+    @apply bg-rose-700 px-5 py-2.5 text-sm text-white;
+  }
+
+  .btn-danger:hover:not(:disabled) {
+    @apply bg-rose-800;
+  }
+
+  .input-field {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-500;
+    box-shadow: none;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  .input-field:focus {
+    @apply border-brand-700 ring-2 ring-brand-700/15;
+    outline: none;
+  }
+
+  .input-label {
+    @apply mb-1.5 block text-sm font-semibold text-slate-700;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 border px-2.5 py-1 text-xs font-semibold;
+    border-radius: 6px;
+    letter-spacing: 0;
+  }
+
+  .badge-initiated,
+  .badge-pending {
+    @apply border-amber-200 bg-amber-50 text-amber-800;
+  }
+
+  .badge-confirmed,
+  .badge-success,
+  .badge-active {
+    @apply border-emerald-200 bg-emerald-50 text-emerald-800;
+  }
+
+  .badge-cancelled,
+  .badge-failed,
+  .badge-suspended {
+    @apply border-rose-200 bg-rose-50 text-rose-800;
+  }
+
+  .badge-refunded {
+    @apply border-slate-200 bg-slate-100 text-slate-700;
+  }
+
+  .badge-inactive {
+    @apply border-slate-200 bg-slate-100 text-slate-700;
+  }
+
+  .badge-train,
+  .badge-bus {
+    @apply border-brand-200 bg-brand-50 text-brand-800;
+  }
+
+  .page-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .stat-card {
+    @apply card-slate flex flex-col gap-1 p-6;
+  }
+
+  .data-table {
+    @apply w-full border-collapse text-left text-sm;
+  }
+
+  .data-table th {
+    @apply border-b border-slate-200 bg-slate-50 px-4 py-3 text-xs font-semibold text-slate-600;
+  }
+
+  .data-table td {
+    @apply border-b border-slate-100 px-4 py-3.5 text-slate-700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .data-table tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .data-table tbody tr:hover {
+    @apply bg-slate-50;
+  }
+
+  .skeleton {
+    @apply bg-slate-200;
+    animation: skeleton-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+.app-shell {
+  min-height: 100dvh;
+  background: var(--page);
+  color: var(--ink);
+}
+
+.page-enter {
+  animation: page-enter 180ms ease-out both;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 60;
+  transform: translateY(-180%);
+  border-radius: 6px;
+  background: var(--ink);
+  padding: 0.7rem 1rem;
+  color: white;
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.admin-page {
+  color: var(--ink);
+}
+
+.admin-page .text-white:not(.btn-primary):not(.btn-danger) {
+  color: var(--ink) !important;
+}
+
+.admin-page .text-slate-100,
+.admin-page .text-slate-200,
+.admin-page .text-slate-300 {
+  color: #33464f !important;
+}
+
+.admin-page .text-slate-400 {
+  color: #53666e !important;
+}
+
+.admin-page .text-slate-500 {
+  color: #687a81 !important;
+}
+
+.admin-page .text-success-400 {
+  color: #14734f !important;
+}
+
+.admin-page .text-danger-400 {
+  color: #b33b40 !important;
+}
+
+.admin-page .text-warning-400 {
+  color: #8a5f12 !important;
+}
+
+.admin-page [class*="bg-surface"] {
+  background-color: #eef3f2;
+}
+
+.admin-page [class*="border-white/"] {
+  border-color: var(--line);
+}
+
+.admin-page .glass-card {
+  background: var(--surface);
+}
+
+.admin-page .bg-slate-900 {
+  background-color: #e9f0ee;
+}
+
+.admin-page .text-brand-300,
+.admin-page .text-brand-400,
+.admin-page .text-info-300,
+.admin-page .text-info-400,
+.admin-page .text-accent-300,
+.admin-page .text-accent-400 {
+  color: var(--brand-strong);
+}
+
+.admin-page [class*="bg-brand-600/"],
+.admin-page [class*="bg-info-"],
+.admin-page [class*="bg-accent-"] {
+  background-color: var(--brand-soft);
+}
+
+.admin-page [class*="border-brand-500/"],
+.admin-page [class*="border-info-"],
+.admin-page [class*="border-accent-"] {
+  border-color: #c7dcd8;
+}
+
+.admin-page .data-table td .text-slate-200 {
+  color: var(--ink) !important;
+}
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+  background: rgb(14 30 36 / 48%);
+}
+
+.dialog-panel {
+  width: min(100%, 38rem);
+  max-height: min(90dvh, 52rem);
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 20px 60px rgb(14 30 36 / 20%);
+}
+
+.trip-result {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.8fr) minmax(240px, 2fr) minmax(155px, 1fr);
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.seat-grid {
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+}
+
+.ticket-print {
+  background: white;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes skeleton-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 767px) {
+  .trip-result {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .seat-grid {
+    grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .data-table {
+    min-width: 680px;
+  }
+
+  .dialog-backdrop {
+    align-items: start;
+  }
+
+  .dialog-panel {
+    max-height: calc(100dvh - 2rem);
+    border-radius: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  body,
+  .app-shell {
+    background: white !important;
+  }
+
+  nav,
+  .ticket-actions,
+  .no-print {
+    display: none !important;
+  }
+
+  main {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  #eticket {
+    border: 1px solid #9aa8ac !important;
+    box-shadow: none !important;
+  }
+}
